@@ -64,3 +64,78 @@ console.log(Car2);
 
 CAr1.accelerate();
 Car2.brake();
+
+//-----ES6 CLASSES---------
+
+class Person2 {
+  constructor(fullName, birthyear) {
+    this.fullName = fullName;
+    this.birthyear = birthyear;
+  }
+
+  calcAge() {
+    console.log(2037 - this.birthyear);
+  }
+
+  greet() {
+    console.log(`hey ${this.fisrtName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthyear;
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) {
+      this._fullName = name;
+    } else {
+      alert(`${name} is not a full name`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  //static methods
+  static hey() {
+    console.log('hey there!');
+    console.log(this);
+  }
+}
+
+Person2.hey();
+const jessica = new Person2('Jessica Davis', 1996);
+console.log(jessica);
+
+console.log(jessica.fullName);
+
+console.log(jessica.age);
+
+// Person2.prototype.greet = function () {
+//   console.log(`hey ${this.fisrtName}`);
+// };
+
+jessica.greet();
+
+//GETTERS AND SETTERS
+
+const account = {
+  owner: 'Arthur',
+  movements: [100, 800, 600, 400, 900],
+
+  get latest() {
+    return this.movements.slice().pop();
+  },
+
+  set latest(mov) {
+    return this.movements.push(mov);
+  },
+};
+
+//FOR GETTER
+console.log(account.latest);
+
+//FOR SETTER
+account.latest = 50;
+console.log(account.movements);
