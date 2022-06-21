@@ -40,3 +40,27 @@ Person.prototype.species = 'Homo Sapiens';
 console.log(jonas, jordan);
 
 //CODING CHALLENGE
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  const newSpeed = this.speed + 10;
+  console.log(newSpeed);
+};
+
+Car.prototype.brake = function () {
+  const newSpeed = this.speed - 5;
+  console.log(newSpeed);
+};
+
+const CAr1 = new Car('BMW', 120);
+console.log(CAr1);
+
+const Car2 = new Car('Mercedes', 95);
+console.log(Car2);
+
+CAr1.accelerate();
+Car2.brake();
