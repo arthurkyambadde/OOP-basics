@@ -139,3 +139,57 @@ console.log(account.latest);
 //FOR SETTER
 account.latest = 50;
 console.log(account.movements);
+
+//OBJECT.CREATE()
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+
+steven.name = 'steven';
+steven.birthYear = 2002;
+
+steven.calcAge();
+
+//CODING CHALLENGE
+
+class CarCreater {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  get speedUS() {
+    const currentSpeed = this.speed / 1.6;
+    return `current speed is ${currentSpeed}mi/hr`;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const bima = new CarCreater('BMW', 120);
+console.log(bima);
+
+const benze = new CarCreater('mercedes', 95);
+console.log(benze);
+
+const ford = new CarCreater('ford', 120);
+
+console.log(ford.speedUS);
+
+ford.speedUS = 40;
+
+console.log(ford.speedUS);
+
+// const CAr1 = new Car('BMW', 120);
+// console.log(CAr1);
+
+// const Car2 = new Car('Mercedes', 95);
+// console.log(Car2);
