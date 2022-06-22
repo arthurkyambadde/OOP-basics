@@ -270,3 +270,59 @@ const martha = new Student2('Martha Jones', 2012, 'computer science');
 
 martha.introduce();
 martha.calcAge();
+
+//OBJECT.CREATE() INHERITENCE
+
+// const PersonProto2 = {
+//   calcAge(){
+//     console.log(2037-this.birthYear);
+//   }
+
+// // init(fisrtName,birthYear){
+// //   this.fisrtName=fisrtName
+// //   this.birthYear= birthYear
+// }
+
+// }
+
+// const steven2 = Object.create(PersonProto2);
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this._pin = pin;
+    this._movements = [];
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account ${owner}`);
+  }
+
+  //public interface
+  deposit(value) {
+    this._movements.push(value);
+  }
+
+  withdraw(value) {
+    this._movements.push(-value);
+  }
+
+  _approveLoan(value) {
+    return true;
+  }
+
+  requestLoan(value) {
+    if (this._approveLoan(value)) {
+      this.deposit(value);
+      console.log(`loan approved`);
+    }
+  }
+}
+
+const account1 = new Account('jonas', 'EUR', 1111);
+
+account1.deposit(250);
+account1.withdraw(150);
+account1.requestLoan(100);
+
+console.log(account1);
