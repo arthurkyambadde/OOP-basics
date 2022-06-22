@@ -299,12 +299,19 @@ class Account {
   }
 
   //public interface
+
+  getMovements() {
+    return this._movements;
+  }
+
   deposit(value) {
     this._movements.push(value);
+    return this;
   }
 
   withdraw(value) {
     this._movements.push(-value);
+    return this;
   }
 
   _approveLoan(value) {
@@ -316,6 +323,7 @@ class Account {
       this.deposit(value);
       console.log(`loan approved`);
     }
+    return this;
   }
 }
 
@@ -325,4 +333,72 @@ account1.deposit(250);
 account1.withdraw(150);
 account1.requestLoan(100);
 
-console.log(account1);
+// console.log(account1);
+// console.log(account1.getMovements());
+
+//CHAINING METHODS
+//ensure that the methods to be chained return something
+
+account1.deposit(300).deposit(100).withdraw(300).requestLoan(2000);
+
+console.log(account1.getMovements());
+
+class CarCreate2 {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed}Km/Hr`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed}Km/Hr`);
+    return this;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+class Ev extends CarCreate2 {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+
+    console.log(
+      `${this.make} is going at ${this.speed}Km/Hr, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const Rivian = new Ev('Rivian', 120, 23);
+console.log(Rivian);
+
+Rivian.accelerate().accelerate().brake().chargeBattery(500);
+
+console.log(Rivian);
+console.log(Rivian.speedUS);
