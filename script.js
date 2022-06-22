@@ -41,45 +41,8 @@ Person.prototype.species = 'Homo Sapiens';
 
 //-----ES6 CLASSES---------
 
-class Person2 {
-  constructor(fullName, birthyear) {
-    this.fullName = fullName;
-    this.birthyear = birthyear;
-  }
-
-  calcAge() {
-    console.log(2037 - this.birthyear);
-  }
-
-  greet() {
-    console.log(`hey ${this.fisrtName}`);
-  }
-
-  get age() {
-    return 2037 - this.birthyear;
-  }
-
-  set fullName(name) {
-    if (name.includes(' ')) {
-      this._fullName = name;
-    } else {
-      alert(`${name} is not a full name`);
-    }
-  }
-
-  get fullName() {
-    return this._fullName;
-  }
-
-  //static methods
-  // static hey() {
-  //   console.log('hey there!');
-  //   console.log(this);
-  // }
-}
-
 // Person2.hey();
-const jessica = new Person2('Jessica Davis', 1996);
+// const jessica = new Person2('Jessica Davis', 1996);
 // console.log(jessica);
 
 // console.log(jessica.fullName);
@@ -250,3 +213,60 @@ const tesla = new ElectricCar('tesla', 120, 23);
 // tesla.accelerate();
 // tesla.accelerate();
 // tesla.brake();
+
+class Person2 {
+  constructor(fullName, birthyear) {
+    this.fullName = fullName;
+    this.birthyear = birthyear;
+  }
+
+  calcAge() {
+    console.log(2037 - this.birthyear);
+  }
+
+  greet() {
+    console.log(`hey ${this.fisrtName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthyear;
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) {
+      this._fullName = name;
+    } else {
+      alert(`${name} is not a full name`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  //static methods
+  // static hey() {
+  //   console.log('hey there!');
+  //   console.log(this);
+  // }
+}
+
+class Student2 extends Person2 {
+  constructor(fullName, birthyear, course) {
+    super(fullName, birthyear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(`I am ${2037 - this.birthyear} years old`);
+  }
+}
+
+const martha = new Student2('Martha Jones', 2012, 'computer science');
+
+martha.introduce();
+martha.calcAge();
